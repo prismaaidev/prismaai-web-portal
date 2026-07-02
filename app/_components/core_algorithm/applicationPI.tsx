@@ -60,7 +60,7 @@ export default function ModernDarkSlider() {
   // Position 2 (Index 1) is our permanent static focused frame window on desktop
   const activeCard = items[1]; 
 
-  const handleCardClick = (clickedIndex) => {
+  const handleCardClick = (clickedIndex: number) => {
     if (clickedIndex === 1) return; // Already active center view
 
     let updatedItems = [...items];

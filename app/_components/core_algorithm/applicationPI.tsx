@@ -146,11 +146,11 @@ export default function ModernDarkSlider() {
                   transition={{ duration: 0.2, ease: "easeOut" }}
                 >
                   {/* Gold Stars Rating Layer */}
-                  <div className="flex items-center justify-center md:justify-start gap-1 mb-3 text-amber-400 text-sm">
+                  {/* <div className="flex items-center justify-center md:justify-start gap-1 mb-3 text-amber-400 text-sm">
                     {Array.from({ length: activeCard.stars }).map((_, i) => (
                       <span key={i}>★</span>
                     ))}
-                  </div>
+                  </div> */}
 
                   {/* Quote Context Paragraph Description */}
                   <p className="text-sm sm:text-base font-normal leading-relaxed text-gray-400 mb-6 border-b border-white/10 pb-6">

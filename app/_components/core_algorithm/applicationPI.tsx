@@ -26,7 +26,7 @@ const initialData = [
     role: "Agile Development",
     // stars: 5,
     quote: "The interface completely revolutionized how our design team syncs up on daily sprints. It feels less like a tool and more like an extension of our collective engineering thoughts.",
-    image:  "/carousel-Items/m2.jpg",
+    image: "/carousel-Items/m2.jpg",
   },
   {
     id: "collaboration-hub",
@@ -56,9 +56,9 @@ const initialData = [
 
 export default function ModernDarkSlider() {
   const [items, setItems] = useState(initialData);
-  
+
   // Position 2 (Index 1) is our permanent static focused frame window on desktop
-  const activeCard = items[1]; 
+  const activeCard = items[1];
 
   const handleCardClick = (clickedIndex: number) => {
     if (clickedIndex === 1) return; // Already active center view
@@ -68,13 +68,20 @@ export default function ModernDarkSlider() {
     if (clickedIndex === 0) {
       // Rotate data backward natively
       const lastItem = updatedItems.pop();
-      updatedItems.unshift(lastItem);
+
+      if (lastItem) {
+        updatedItems.unshift(lastItem);
+      }
     } else {
-      // Rotate data forward natively to shift item into the center active frame position
+      // Rotate data forward natively
       const steps = clickedIndex - 1;
+
       for (let i = 0; i < steps; i++) {
         const firstItem = updatedItems.shift();
-        updatedItems.push(firstItem);
+
+        if (firstItem) {
+          updatedItems.push(firstItem);
+        }
       }
     }
     setItems(updatedItems);
@@ -84,22 +91,22 @@ export default function ModernDarkSlider() {
     <div className="relative min-h-screen w-full block overflow-x-hidden overflow-y-auto bg-slate-950 text-white font-sans antialiased py-12 flex flex-col justify-center">
       {/* Maximum grid constraint pushed out to max-w-[90rem] (1440px) to balance 4 sub-thumbnails elegantly */}
       <div className="max-w-7xl mx-auto px-6 md:px-0 pb-20 flex flex-col items-center">
-        
+
         {/* TOP LEVEL LOGO HEADER */}
         <div className="w-full text-center select-none mb-12 md:mb-16">
           {/* <h2 className="text-xl md:text-2xl font-medium tracking-wide text-gray-300">
             Application Programming Interface
           </h2> */}
           <h2 className=" text-center text-3xl sm:text-4xl font-semibold text-white">Application Programming Interface</h2>
-           
+
         </div>
 
         {/* MAIN DESIGN PLATFORM STAGE */}
         <div className="w-full flex flex-col md:grid md:grid-cols-[140px_380px_1fr] gap-6 md:gap-8 items-center md:items-end h-auto md:h-[480px] overflow-visible">
-          
+
           {/* TRACK GROUP: Left thumbnail and Active Large Card */}
           <div className="w-full flex items-end justify-center gap-4 md:contents">
-            
+
             {/* CARD POSITION 1 (Left Preview Thumbnail) */}
             <button
               onClick={() => handleCardClick(0)}
@@ -119,15 +126,15 @@ export default function ModernDarkSlider() {
                 alt={activeCard.name}
                 className="h-full w-full object-cover opacity-90 brightness-[0.95]"
               />
-              
-              
+
+
             </div>
 
           </div>
 
           {/* COLUMN POSITION 3 (Right Text Info Box + Remaining 4 Sub-Thumbnails) */}
           <div className="flex flex-col justify-between h-auto md:h-[480px] md:pl-0 w-full overflow-visible gap-8 md:gap-0">
-            
+
             {/* TEXT BOX AREA */}
             <div className="flex-1 flex flex-col justify-center select-none text-center md:text-left py-2 md:py-0 md:max-w-2xl">
               <AnimatePresence mode="wait">
@@ -166,7 +173,7 @@ export default function ModernDarkSlider() {
             <div className="flex gap-4 items-end justify-center md:justify-start h-[100px] sm:h-[140px] shrink-0 overflow-x-auto md:overflow-x-visible w-full max-w-full py-1">
               {items.slice(2).map((card, sliceIdx) => {
                 const trueTrackIdx = sliceIdx + 2;
-                
+
                 return (
                   <button
                     key={`slot-thumb-${card.id}`}
